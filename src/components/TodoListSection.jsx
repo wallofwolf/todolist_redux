@@ -12,19 +12,22 @@ function TodoListSection({ isTodoArea }) {
 
   // ! 완료, 취소 버튼 토글함수
   const handleSwitchButtonClick = (id) => {
-    console.log(id);
-    // const id = event.target.previousSibling
     dispatch({
       type: 'TOGGLE_BTN',
       tododata: {
-        id: id, // id는 잘 가고 있다
+        id: id,
       },
     });
   };
 
   // 할 일 삭제 함수
-  const handleDeleteButtonClick = () => {
-    console.log(2);
+  const handleDeleteButtonClick = (id) => {
+    dispatch({
+      type: 'DEL_TODO',
+      tododata: {
+        id: id,
+      }
+    })
   };
 
   return (
@@ -42,12 +45,10 @@ function TodoListSection({ isTodoArea }) {
               key={item.id}>
               <h3>{item.title}</h3>
               <p>{item.body}</p>
-              {item.id}
-              {/* // onClick={() => onClickHandler(type)} */}
               <button onClick={() => handleSwitchButtonClick(item.id)}>
                 {isTodoArea ? '완료' : '취소'}
               </button>
-              <button onClick={handleDeleteButtonClick}>삭제</button>
+              <button onClick={() => handleDeleteButtonClick(item.id)}>삭제</button>
             </div>
           );
         })}

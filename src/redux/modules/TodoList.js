@@ -28,11 +28,7 @@ const todoList = (state = initialState, action) => {
     case 'ADD_TODO':
       return [...state, action.tododata];
     case 'TOGGLE_BTN':
-      console.log(typeof action.tododata.id); // 아이디는 잘 받아주고 있다
-      //! 지금 문제는 item.id?
       const isDoneOrCancel = state.map((item) => {
-        console.log(item.id);
-
         if (item.id === action.tododata.id) {
           return { ...item, isDone: !item.isDone };
         } else {
@@ -40,6 +36,9 @@ const todoList = (state = initialState, action) => {
         }
       });
       return isDoneOrCancel;
+    case 'DEL_TODO':
+      const deleteTodo = state.filter((item) => item.id !== action.tododata.id);
+      return deleteTodo
     default:
       return state;
   }
