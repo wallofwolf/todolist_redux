@@ -10,11 +10,10 @@ function TodoListSection({ isTodoArea }) {
   // .TodoList.js에서 할 일 데이터 불러오기
   const allTodoData = useSelector((state) => state.todoList);
 
-
   // ! 완료, 취소 버튼 토글함수
-  const handleSwitchButtonClick = (event) => {
-    console.log(event);
-    const id = event.target.previousSibling
+  const handleSwitchButtonClick = (id) => {
+    console.log(id);
+    // const id = event.target.previousSibling
     dispatch({
       type: 'TOGGLE_BTN',
       tododata: {
@@ -44,7 +43,10 @@ function TodoListSection({ isTodoArea }) {
               <h3>{item.title}</h3>
               <p>{item.body}</p>
               {item.id}
-              <button onClick={handleSwitchButtonClick}>{isTodoArea ? '완료' : '취소'}</button>
+              {/* // onClick={() => onClickHandler(type)} */}
+              <button onClick={() => handleSwitchButtonClick(item.id)}>
+                {isTodoArea ? '완료' : '취소'}
+              </button>
               <button onClick={handleDeleteButtonClick}>삭제</button>
             </div>
           );
