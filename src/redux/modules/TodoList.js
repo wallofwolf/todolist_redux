@@ -38,7 +38,7 @@ const todoList = (state = initialState, action) => {
       return isDoneOrCancel;
     case 'DEL_TODO':
       const deleteTodo = state.filter((item) => item.id !== action.tododata.id);
-      return deleteTodo
+      return deleteTodo;
     default:
       return state;
   }

@@ -31,15 +31,20 @@ function InputSection() {
   //! 할 일 추가 버튼을 눌렀을 때 데이터를 추가해주는 함수
   const handleAddTodo = (event) => {
     event.preventDefault();
-    dispatch({
-      type: 'ADD_TODO',
-      tododata: {
-        id: uuidv4(),
-        title: title,
-        body: body,
-        isDone: false,
-      },
-    });
+    if (title === '' || body === '') {
+      alert('할 일의 제목과 내용을 입력하세요!');
+      return;
+    } else {
+      dispatch({
+        type: 'ADD_TODO',
+        tododata: {
+          id: uuidv4(),
+          title: title,
+          body: body,
+          isDone: false,
+        },
+      });
+    }
   };
   return (
     <StSection>

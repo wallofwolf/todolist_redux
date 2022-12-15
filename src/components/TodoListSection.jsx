@@ -10,7 +10,7 @@ function TodoListSection({ isTodoArea }) {
   // .TodoList.js에서 할 일 데이터 불러오기
   const allTodoData = useSelector((state) => state.todoList);
 
-  // ! 완료, 취소 버튼 토글함수
+  // 완료, 취소 버튼 토글함수
   const handleSwitchButtonClick = (id) => {
     dispatch({
       type: 'TOGGLE_BTN',
@@ -26,8 +26,8 @@ function TodoListSection({ isTodoArea }) {
       type: 'DEL_TODO',
       tododata: {
         id: id,
-      }
-    })
+      },
+    });
   };
 
   return (
