@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Stdiv = styled.div`
@@ -7,6 +8,7 @@ const Stdiv = styled.div`
 
 function TodoListSection({ isTodoArea }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // .TodoList.js에서 할 일 데이터 불러오기
   const allTodoData = useSelector((state) => state.todoList);
 
@@ -30,6 +32,11 @@ function TodoListSection({ isTodoArea }) {
     });
   };
 
+  // 할 일 상세보기 클릭 시 호출하는 함수
+  const handleTodoDetail = (id) => {
+    navigate(`/${id}`);
+  };
+
   return (
     <Stdiv>
       <h1>{isTodoArea ? '진행 중 🏃‍♂️' : '완료! ⚡️'}</h1>
@@ -43,7 +50,7 @@ function TodoListSection({ isTodoArea }) {
                 height: '80px',
               }}
               key={item.id}>
-              <h3>{item.title}</h3>
+              <h3 onClick={() => handleTodoDetail(item.id)}>{item.title}</h3>
               <p>{item.body}</p>
               <button onClick={() => handleSwitchButtonClick(item.id)}>
                 {isTodoArea ? '완료' : '취소'}
