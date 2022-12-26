@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
+import { addTodo } from '../redux/modules/TodoList';
 
 // styled-components
 const StSection = styled.section`
@@ -35,8 +36,9 @@ function InputSection() {
       alert('할 일의 제목과 내용을 입력하세요!');
       return;
     } else {
+      dispatch(todoListSliceAction.addtodo());
       dispatch({
-        type: 'ADD_TODO',
+        addTodo,
         tododata: {
           id: uuidv4(),
           title: title,

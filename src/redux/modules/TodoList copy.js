@@ -25,6 +25,7 @@ const initialState = [
 
 // 슬라이스
 // action value + action creator + reducer
+// 여기서 디스패치는 어떻게 하지?
 const todoListSlice = createSlice({
   name: 'todoList',
   initialState,
@@ -52,6 +53,6 @@ const todoListSlice = createSlice({
 });
 
 // 컴포넌트에서 사용하기 위해 액션크리에이터 export
-export const todoListSliceAction = todoListSlice.actions;
+export const { addTodo, toggleBtn, delTodo } = todoListSlice.actions;
 // configStore에 등록하기 위해 export
 export default todoListSlice.reducer;
